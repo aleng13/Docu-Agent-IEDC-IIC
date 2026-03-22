@@ -7,7 +7,7 @@ smart recursive duplication of template directories, and transactional rollbacks
 
 import logging
 import time
-from typing import Optional
+from typing import Optional, Callable
 from googleapiclient.discovery import Resource
 
 from .drive_client import (
@@ -41,7 +41,8 @@ def should_rename_file(file_name: str) -> bool:
     return True
 
 def copy_folder_recursively(service: Resource, event_name: str, source_folder_id: str, 
-                            destination_folder_id: str, shared_drive_id: Optional[str] = None) -> None:
+                            destination_folder_id: str, shared_drive_id: Optional[str] = None,
+                            on_progress: Optional[Callable[[str], None]] = None) -> None:
     """
     Recursively deep-copies a template directory into a target directory using DFS.
     
@@ -54,6 +55,7 @@ def copy_folder_recursively(service: Resource, event_name: str, source_folder_id
         source_folder_id (str): The Drive ID of the template folder/subfolder.
         destination_folder_id (str): The Drive ID of the newly created destination folder/subfolder.
         shared_drive_id (Optional[str]): The ID of the Shared Drive, if applicable. Defaults to None.
+        on_progress (Optional[Callable[[str], None]]): Optional callback for progress updates.
         
     Raises:
         Exception: If a subfolder creation or file copy critically fails.
@@ -72,6 +74,8 @@ def copy_folder_recursively(service: Resource, event_name: str, source_folder_id
             
             if item_mime == 'application/vnd.google-apps.folder':
                 log.info(f"📂 Creating subfolder: '{item_name}'")
+                if on_progress:
+                    on_progress(f"Creating folder: {item_name}")
                 new_subfolder_id = create_folder(service, item_name, destination_folder_id, shared_drive_id)
                 
                 if not new_subfolder_id:
@@ -82,7 +86,8 @@ def copy_folder_recursively(service: Resource, event_name: str, source_folder_id
                     event_name,
                     item_id,
                     new_subfolder_id,
-                    shared_drive_id
+                    shared_drive_id,
+                    on_progress
                 )
             else:
                 if item_mime in ['application/vnd.google-apps.map', 'application/vnd.google-apps.site']:
@@ -95,6 +100,8 @@ def copy_folder_recursively(service: Resource, event_name: str, source_folder_id
                     new_file_name = item_name
 
                 log.info(f"   📝 Copying file: {new_file_name}")
+                if on_progress:
+                    on_progress(f"Copying: {new_file_name}")
                 copy_file(service, item_id, new_file_name, destination_folder_id, shared_drive_id)
 
     except Exception as e:
@@ -103,7 +110,8 @@ def copy_folder_recursively(service: Resource, event_name: str, source_folder_id
 
 
 def create_event_folder(service: Resource, event_name: str, template_id: str, 
-                        parent_id: str, shared_drive_id: Optional[str] = None) -> Optional[str]:
+                        parent_id: str, shared_drive_id: Optional[str] = None,
+                        on_progress: Optional[Callable[[str], None]] = None) -> Optional[str]:
     """
     Orchestrates the creation and setup of a new event folder.
     
@@ -117,6 +125,7 @@ def create_event_folder(service: Resource, event_name: str, template_id: str,
         template_id (str): The Drive ID of the template folder to clone.
         parent_id (str): The Drive ID of the directory where the new folder will sit.
         shared_drive_id (Optional[str]): The ID of the Shared Drive context, if applicable. Defaults to None.
+        on_progress (Optional[Callable[[str], None]]): Optional callback for progress updates.
 
     Returns:
         Optional[str]: The Drive ID of the fully constructed folder, or None if the operation failed.
@@ -125,6 +134,8 @@ def create_event_folder(service: Resource, event_name: str, template_id: str,
     
     try:
         log.info(f"🚀 Starting folder creation for: '{event_name}'")
+        if on_progress:
+            on_progress("Initializing creation...")
 
         existing_id = find_folder_id(service, event_name, parent_id, shared_drive_id)
         if existing_id:
@@ -132,6 +143,8 @@ def create_event_folder(service: Resource, event_name: str, template_id: str,
             return existing_id
 
         log.info(f"🚀 Creating root event folder: '{event_name}' in parent '{parent_id}'")
+        if on_progress:
+            on_progress("Creating root folder...")
         new_folder_id = create_folder(service, event_name, parent_id, shared_drive_id)
         
         if not new_folder_id:
@@ -142,12 +155,15 @@ def create_event_folder(service: Resource, event_name: str, template_id: str,
         log.info(f"✅ Root folder created (ID: {new_folder_id})")
 
         log.info("Starting template copy...")
+        if on_progress:
+            on_progress("Cloning template contents...")
         copy_folder_recursively(
             service, 
             event_name, 
             template_id, 
             new_folder_id,
-            shared_drive_id
+            shared_drive_id,
+            on_progress
         )
         
         log.info(f"🎉 Successfully created event infrastructure for '{event_name}'")
