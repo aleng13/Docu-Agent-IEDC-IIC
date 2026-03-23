@@ -39,6 +39,13 @@ SHARED_DRIVE_ID=your_target_shared_drive_id
 
 ## Running the App
 
+### CLI Mode (One-off folder creation)
 ```bash
 python main.py "My Cool Event 2026"
+```
+
+### Telegram Bot Mode (Polling)
+Run this from the root directory to ensure the `src` package is correctly recognized:
+```bash
+python -m src.telegram_bot
 ```
