@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import (
+    Application,
     ApplicationBuilder,
     CommandHandler,
     ContextTypes,
@@ -22,6 +23,7 @@ from telegram.ext import (
 
 from src.drive_auth import get_drive_service
 from src.folder_logic import create_event_folder
+from src.keep_alive import keep_alive
 
 log = logging.getLogger(__name__)
 
@@ -136,8 +138,15 @@ async def create_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     # Spawn background task
     context.application.create_task(_create_event_task(update.effective_chat.id, event_name, context.application, msg.message_id))
 
-def main() -> None:
-    """Startup for the Telegram Bot."""
+def build_application() -> Application:
+    """Builds and configures the Telegram application.
+
+    Returns:
+        Application: Configured Telegram app with handlers.
+
+    Raises:
+        RuntimeError: If the TELEGRAM_TOKEN environment variable is missing.
+    """
     if not TELEGRAM_TOKEN:
         raise RuntimeError("TELEGRAM_TOKEN is missing in the .env file.")
         
@@ -145,13 +154,14 @@ def main() -> None:
     
     app.add_handler(CommandHandler("start", start_cmd))
     app.add_handler(CommandHandler("create", create_cmd))
-    
-    log.info("🤖 Bot is starting up in POLLING mode...")
-    app.run_polling()
+    return app
 
 if __name__ == "__main__":
     logging.basicConfig(
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         level=logging.INFO,
     )
-    main()
+    app = build_application()
+    keep_alive()
+    log.info("🤖 Bot is starting up in POLLING mode...")
+    app.run_polling()
