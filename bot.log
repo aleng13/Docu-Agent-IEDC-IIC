@@ -128,3 +128,30 @@
 2026-03-23 19:07:36,300 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
 2026-03-23 19:07:46,515 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
 2026-03-23 19:07:56,711 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
+ERROR: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})
+2026-03-31 18:52:18 - WEB_STATUS - INFO - Initializing creation...
+2026-03-31 18:52:19 - WEB_STATUS - INFO - Creating root folder...
+2026-03-31 18:52:21 - WEB_STATUS - INFO - Cloning template contents...
+2026-03-31 18:52:22 - WEB_STATUS - INFO - Creating folder: RSMS Notice
+2026-03-31 18:52:24 - WEB_STATUS - INFO - Creating folder: Registration
+2026-03-31 18:52:25 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Event_Name_Registration_Form
+2026-03-31 18:52:31 - WEB_STATUS - INFO - Creating folder: Poster
+2026-03-31 18:52:33 - WEB_STATUS - INFO - Copying: sample.jpeg
+2026-03-31 18:52:35 - WEB_STATUS - INFO - Creating folder: Report
+2026-03-31 18:52:37 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit___Event_Number____Event_Name___Report_IEDC.docx
+2026-03-31 18:52:39 - WEB_STATUS - INFO - Creating folder: Organizing Committee
+2026-03-31 18:52:42 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Event Name__Organizing Commitee List.docx
+2026-03-31 18:52:44 - WEB_STATUS - INFO - Creating folder: Media
+2026-03-31 18:52:46 - WEB_STATUS - INFO - Creating folder: Stage
+2026-03-31 18:52:48 - WEB_STATUS - INFO - Creating folder: Group Photo
+2026-03-31 18:52:50 - WEB_STATUS - INFO - Creating folder: Audience
+2026-03-31 18:52:52 - WEB_STATUS - INFO - Creating folder: Geotagged
+2026-03-31 18:52:55 - WEB_STATUS - INFO - Creating folder: Permission Letter
+2026-03-31 18:52:57 - WEB_STATUS - INFO - Creating folder: Certificates
+2026-03-31 18:52:58 - WEB_STATUS - INFO - Creating folder: Feedback
+2026-03-31 18:53:00 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Event_Name_Feedback Form
+2026-03-31 18:53:05 - WEB_STATUS - INFO - Creating folder: Budget Sheet
+2026-03-31 18:53:07 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Budget_Sheet__Event_Name__.xlsx
+2026-03-31 18:53:09 - WEB_STATUS - INFO - Creating folder: Attendance
+2026-03-31 18:53:11 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Attendance_Sheet_Event_Name.xlsx
+2026-03-31 18:53:13 - WEB_STATUS - INFO - DEPLOYMENT_COMPLETE: 1BL22IHWBC88mE4YSM6_v4ky7t0Etuv3M

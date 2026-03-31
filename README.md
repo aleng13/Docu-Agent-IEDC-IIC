@@ -8,44 +8,32 @@ Docu-Agent-Clean is an automated Google Drive infrastructure bot that flawlessly
 - A Google Cloud Service Account `credentials.json` (OAuth2.0 enabled) stored in the root folder.
 - Google Account ready to authenticate the app locally at first run.
 
-## Setup Instructions
+## Quick Start
 
-1. **Create and activate a virtual environment:**
+1. **Setup Environment**:
    ```bash
    python -m venv venv
-   # Windows
-   venv\Scripts\activate
-   # MacOS/Linux
-   source venv/bin/activate
-   ```
-
-2. **Install requirements:**
-   ```bash
+   source venv/bin/activate # or venv\Scripts\activate on Windows
    pip install -r requirements.txt
    ```
 
-3. **Initialize Configuration:**
-   - Drop your `credentials.json` file into the root directory.
-   - Adjust `config.json` with your target template structure and IDs.
-   - Setup `.env` as defined below.
+2. **Configure GCP**: Drop your `credentials.json` into the root.
 
-## Environment Variables
-Create a file named `.env` in the root folder and add the following keys. **Never commit actual credentials or tokens to version control.**
-
-```env
-TELEGRAM_TOKEN=your_telegram_bot_token
-SHARED_DRIVE_ID=your_target_shared_drive_id
-```
+3. **Detailed Documentation**: For a full, step-by-step setup (including Telegram and GEMINI setup), please see our **[Comprehensive Run Guide](docs/RUN_GUIDE.md)**.
 
 ## Running the App
 
-### CLI Mode (One-off folder creation)
+### CLI Mode (One-off)
 ```bash
 python main.py "My Cool Event 2026"
 ```
 
 ### Telegram Bot Mode (Polling)
-Run this from the root directory to ensure the `src` package is correctly recognized:
 ```bash
 python -m src.telegram_bot
+```
+
+### Web Dashboard Mode (Standalone)
+```bash
+python -m src.keep_alive
 ```

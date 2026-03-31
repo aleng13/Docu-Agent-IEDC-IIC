@@ -1,128 +1,46 @@
-"""Lightweight keep-alive Flask server for Render Web Service health checks."""
-
 import logging
 import os
 import threading
+import json
+import time
 from collections import deque
-from typing import Optional
+from typing import Optional, Dict
 
-from flask import Flask, jsonify, render_template_string
+from flask import Flask, jsonify, render_template, request
+from dotenv import load_dotenv
+
+from src.drive_auth import get_drive_service
+from src.folder_logic import create_event_folder
+
+load_dotenv()
+_SHARED_DRIVE_ID = os.getenv("SHARED_DRIVE_ID")
 
 app = Flask(__name__)
 _server_thread: Optional[threading.Thread] = None
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _LOG_FILE_PATH = os.path.join(_PROJECT_ROOT, "bot.log")
-_DASHBOARD_TEMPLATE = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Docu-Agent Dashboard</title>
-    <style>
-        :root {
-            --bg: #0b0f14;
-            --panel: #121821;
-            --border: #1f2a37;
-            --text: #e5e7eb;
-            --muted: #9ca3af;
-            --accent: #22c55e;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: radial-gradient(circle at top right, #1a2230 0%, var(--bg) 55%);
-            color: var(--text);
-            font-family: "Segoe UI", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-            padding: 24px;
-        }
-        .card {
-            max-width: 1040px;
-            margin: 0 auto;
-            background: linear-gradient(180deg, #151e2b 0%, var(--panel) 100%);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-            overflow: hidden;
-        }
-        .header {
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-        }
-        .title {
-            margin: 0;
-            font-size: 1.15rem;
-            letter-spacing: 0.2px;
-        }
-        .meta {
-            margin: 0;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-        .terminal {
-            margin: 16px;
-            padding: 16px;
-            background: #05080c;
-            border: 1px solid #15202b;
-            border-radius: 10px;
-            height: min(72vh, 680px);
-            overflow-y: auto;
-            white-space: pre-wrap;
-            line-height: 1.4;
-            font-family: Consolas, "Courier New", monospace;
-            color: var(--accent);
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="header">
-            <h1 class="title">Docu-Agent Live Logs</h1>
-            <p class="meta" id="status">Updating every 2s</p>
-        </div>
-        <pre class="terminal" id="logTerminal">Initializing logs...</pre>
-    </div>
 
-    <script>
-        const terminal = document.getElementById("logTerminal");
-        const statusText = document.getElementById("status");
+def get_config_ids() -> Dict[str, Optional[str]]:
+    """Retrieves the required folder IDs from config.json or environment."""
+    config_path = os.path.join(_PROJECT_ROOT, "config.json")
+    parent_id = os.getenv("PARENT_FOLDER_ID")
+    template_id = os.getenv("TEMPLATE_FOLDER_ID")
 
-        async function refreshLogs() {
-            try {
-                const response = await fetch("/api/logs", { cache: "no-store" });
-                const payload = await response.json();
-                terminal.textContent = payload.logs || "Initializing logs...";
-                terminal.scrollTop = terminal.scrollHeight;
-                statusText.textContent = "Updating every 2s";
-            } catch (error) {
-                statusText.textContent = "Log stream unavailable";
-            }
-        }
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = json.load(f)
+            parent_id = parent_id or config.get("parent_folder_id")
+            template_id = template_id or config.get("template_folder_id")
+    except Exception as e:
+        app.logger.warning(f"Could not load from config.json: {e}")
 
-        refreshLogs();
-        setInterval(refreshLogs, 2000);
-    </script>
-</body>
-</html>
-"""
-
+    return {"parent_id": parent_id, "template_id": template_id}
+    return {"parent_id": parent_id, "template_id": template_id}
 
 @app.route("/")
 def home() -> str:
-    """Renders the live dashboard UI.
-
-    Returns:
-        str: HTML dashboard with auto-updating logs.
-    """
-    return render_template_string(_DASHBOARD_TEMPLATE)
-
-
+    """Renders the UI from index.html template."""
+    return render_template("index.html")
 @app.route("/api/logs")
 def get_logs() -> object:
     """Returns the last 100 log lines as JSON.
@@ -140,6 +58,61 @@ def get_logs() -> object:
         return jsonify({"logs": f"Log read error: {str(e)}"})
 
 
+@app.route("/api/create", methods=["POST"])
+def api_create_event():
+    """Trigger folder creation asynchronously via POST."""
+    data = request.get_json()
+    event_name = data.get("event_name") if data else None
+
+    if not event_name:
+        return jsonify({"error": "Event Name is required"}), 400
+
+    def background_worker():
+        """Worker thread for folder creation."""
+        logging.info(f"WEB_THREAD: Initializing creation for '{event_name}'")
+        
+        ids = get_config_ids()
+        parent_id = ids["parent_id"]
+        template_id = ids["template_id"]
+
+        if not parent_id or not template_id:
+            logging.error("WEB_THREAD: Config Error - Missing parent_id or template_id.")
+            return
+
+        try:
+            service = get_drive_service(_PROJECT_ROOT)
+            
+            def log_progress(status: str):
+                """Callback to write progress to log file."""
+                with open(_LOG_FILE_PATH, "a", encoding="utf-8") as f:
+                    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+                    f.write(f"{timestamp} - WEB_STATUS - INFO - {status}\n")
+
+            folder_id = create_event_folder(
+                service=service,
+                event_name=event_name,
+                template_id=template_id,
+                parent_id=parent_id,
+                shared_drive_id=_SHARED_DRIVE_ID,
+                on_progress=log_progress
+            )
+            
+            if folder_id:
+                log_progress(f"DEPLOYMENT_COMPLETE: {folder_id}")
+            else:
+                log_progress("FAILED: Folder creation failed.")
+
+        except Exception as e:
+            logging.exception(f"WEB_THREAD Error: {e}")
+            with open(_LOG_FILE_PATH, "a", encoding="utf-8") as f:
+                f.write(f"ERROR: {str(e)}\n")
+
+    thread = threading.Thread(target=background_worker, daemon=True)
+    thread.start()
+    
+    return jsonify({"status": "Creation started", "event_name": event_name}), 202
+
+
 def _run_server() -> None:
     """Runs Flask on a Render-compatible host and dynamic port.
 
@@ -148,7 +121,10 @@ def _run_server() -> None:
     """
     logging.getLogger("werkzeug").setLevel(logging.ERROR)
     port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    print(f"\n🚀 Docu-Agent Dashboard is LIVE!")
+    print(f"🔗 Click here to open: http://localhost:{port}\n")
+    # debug=True enables auto-reload and better error reporting
+    app.run(host="0.0.0.0", port=port, debug=True)
 
 
 def keep_alive() -> None:
@@ -164,3 +140,9 @@ def keep_alive() -> None:
 
     _server_thread = threading.Thread(target=_run_server, daemon=True)
     _server_thread.start()
+
+
+if __name__ == "__main__":
+    # If run directly, run the server in the main thread (blocking)
+    _run_server()
+
