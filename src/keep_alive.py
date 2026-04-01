@@ -79,6 +79,11 @@ def api_create_event():
             logging.error("WEB_THREAD: Config Error - Missing parent_id or template_id.")
             return
 
+        # Clear the log file for the new session to prevent frontend from reading old completion states
+        with open(_LOG_FILE_PATH, "w", encoding="utf-8") as f:
+            timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+            f.write(f"{timestamp} - WEB_STATUS - INFO - Initializing '{event_name}'...\n")
+
         try:
             service = get_drive_service(_PROJECT_ROOT)
             

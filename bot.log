@@ -1,157 +1,29 @@
-2026-03-23 18:59:39,083 - __main__ - INFO - Bot is starting up in POLLING mode...
-2026-03-23 18:59:39,924 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getMe "HTTP/1.1 200 OK"
-2026-03-23 18:59:40,109 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/deleteWebhook "HTTP/1.1 200 OK"
-2026-03-23 18:59:40,113 - telegram.ext.Application - INFO - Application started
-2026-03-23 18:59:40,725 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 18:59:41,142 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/sendMessage "HTTP/1.1 200 OK"
-2026-03-23 18:59:50,970 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:01,204 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:11,397 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:21,589 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:31,779 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:41,987 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:47,976 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:48,812 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/sendMessage "HTTP/1.1 200 OK"
-2026-03-23 19:00:48,816 - __main__ - INFO - Background: Creating folder for 4 next event
-2026-03-23 19:00:48,817 - src.drive_auth - INFO - 🔑 Loading OAuth token.json
-2026-03-23 19:00:48,819 - src.drive_auth - INFO - 🔄 Refreshing expired token
-2026-03-23 19:00:50,202 - src.drive_auth - INFO - 💾 token.json saved
-2026-03-23 19:00:50,216 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
-2026-03-23 19:00:50,272 - src.drive_auth - INFO - ✅ Drive service initialized successfully.
-2026-03-23 19:00:50,274 - src.folder_logic - INFO - 🚀 Starting folder creation for: '4 next event'
-2026-03-23 19:00:50,696 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:00:52,049 - src.folder_logic - INFO - 🚀 Creating root event folder: '4 next event' in parent '17Q6KKqlgLJz17SeaOLBEUMLiqLe80hET'
-2026-03-23 19:00:52,460 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:00:53,935 - src.folder_logic - INFO - ✅ Root folder created (ID: 1XMmr6ejcgIWfMe3JIQ-8UxVhTn5x7tHj)
-2026-03-23 19:00:53,936 - src.folder_logic - INFO - Starting template copy...
-2026-03-23 19:00:53,937 - src.folder_logic - INFO - 📂 Reading contents of folder: 1ZA4XVT20TZdOC2Z7Iv1pSXEjKWO-NVS2
-2026-03-23 19:00:54,340 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:00:54,901 - src.folder_logic - INFO - 📂 Creating subfolder: 'RSMS Notice'
-2026-03-23 19:00:55,892 - src.folder_logic - INFO - 📂 Reading contents of folder: 1lVOsJxPi150s4ArGLqh1ohhV7oN6XKZj
-2026-03-23 19:00:56,837 - src.folder_logic - INFO - 📂 Creating subfolder: 'Registration'
-2026-03-23 19:00:57,251 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:00:57,828 - src.folder_logic - INFO - 📂 Reading contents of folder: 1BSouxjmn_v8hlzPJidRhn-7Aew-V1ovi
-2026-03-23 19:00:58,175 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:00:58,849 - src.folder_logic - INFO -    📝 Copying file: 4 next event_Event_Name_Registration_Form
-2026-03-23 19:00:59,248 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:03,693 - src.folder_logic - INFO - 📂 Creating subfolder: 'Poster'
-2026-03-23 19:01:04,128 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:04,785 - src.folder_logic - INFO - 📂 Reading contents of folder: 1u17-Vp_GwUpkzb2W3laEBLkLPqlW5r9a
-2026-03-23 19:01:05,857 - src.folder_logic - INFO -    📝 Copying file: sample.jpeg
-2026-03-23 19:01:06,298 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:08,369 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:01:08,396 - src.folder_logic - INFO - 📂 Creating subfolder: 'Report'
-2026-03-23 19:01:08,843 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:09,268 - src.folder_logic - INFO - 📂 Reading contents of folder: 1Dc0u2a4RzCe6Hbci1S9-X6myeA8dQwKH
-2026-03-23 19:01:10,209 - src.folder_logic - INFO -    📝 Copying file: 4 next event___Event_Number____Event_Name___Report_IEDC.docx
-2026-03-23 19:01:10,731 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:13,175 - src.folder_logic - INFO - 📂 Creating subfolder: 'Organizing Committee'
-2026-03-23 19:01:13,584 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:14,097 - src.folder_logic - INFO - 📂 Reading contents of folder: 1qvv6Ai5Ua9T4Aaq9n6yIR8tRcBskYrLw
-2026-03-23 19:01:15,045 - src.folder_logic - INFO -    📝 Copying file: 4 next event_Event Name__Organizing Commitee List.docx
-2026-03-23 19:01:15,450 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:17,784 - src.folder_logic - INFO - 📂 Creating subfolder: 'Media'
-2026-03-23 19:01:18,184 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:18,564 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:01:18,710 - src.folder_logic - INFO - 📂 Reading contents of folder: 1h2YHlBFxYEEnXrAuym7TTGz70EI4Dk6V
-2026-03-23 19:01:19,757 - src.folder_logic - INFO - 📂 Creating subfolder: 'Stage'
-2026-03-23 19:01:20,222 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:20,662 - src.folder_logic - INFO - 📂 Reading contents of folder: 1LrirXnJMlnlIaI3nhGBZUJfWxReu603I
-2026-03-23 19:01:21,690 - src.folder_logic - INFO - 📂 Creating subfolder: 'Group Photo'
-2026-03-23 19:01:22,095 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:22,620 - src.folder_logic - INFO - 📂 Reading contents of folder: 1EylLsLx-3udBY5qKbpQBYYQQRjyMn1OL
-2026-03-23 19:01:23,685 - src.folder_logic - INFO - 📂 Creating subfolder: 'Audience'
-2026-03-23 19:01:24,142 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:24,784 - src.folder_logic - INFO - 📂 Reading contents of folder: 1DQWr5VZ8ILRcBp5msOqrv8L6yEC68DJv
-2026-03-23 19:01:25,789 - src.folder_logic - INFO - 📂 Creating subfolder: 'Geotagged'
-2026-03-23 19:01:26,195 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:26,712 - src.folder_logic - INFO - 📂 Reading contents of folder: 1z2Kt-jNHDPzWi99IrhV5J9Piaa898bpN
-2026-03-23 19:01:27,645 - src.folder_logic - INFO - 📂 Creating subfolder: 'Permission Letter'
-2026-03-23 19:01:28,051 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:28,508 - src.folder_logic - INFO - 📂 Reading contents of folder: 1KVIjtW01a3twLqKiekets2U6VhDADnN3
-2026-03-23 19:01:28,754 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:01:29,574 - src.folder_logic - INFO - 📂 Creating subfolder: 'Certificates'
-2026-03-23 19:01:29,978 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:30,577 - src.folder_logic - INFO - 📂 Reading contents of folder: 1EEBgMnXAYa3HNQ8VYWfhidxGjyVRCkDl
-2026-03-23 19:01:31,621 - src.folder_logic - INFO - 📂 Creating subfolder: 'Feedback'
-2026-03-23 19:01:32,044 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:32,466 - src.folder_logic - INFO - 📂 Reading contents of folder: 1MJ0Nncdi78PWFceT_oX0UPqptocMaaCX
-2026-03-23 19:01:33,409 - src.folder_logic - INFO -    📝 Copying file: 4 next event_Event_Name_Feedback Form
-2026-03-23 19:01:33,815 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:38,280 - src.folder_logic - INFO - 📂 Creating subfolder: 'Budget Sheet'
-2026-03-23 19:01:38,682 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:38,993 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:01:39,341 - src.folder_logic - INFO - 📂 Reading contents of folder: 1rojJr0B6k1NeeD-SY5WLycDyu8GgmLg_
-2026-03-23 19:01:40,305 - src.folder_logic - INFO -    📝 Copying file: 4 next event_Budget_Sheet__Event_Name__.xlsx
-2026-03-23 19:01:40,720 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:42,753 - src.folder_logic - INFO - 📂 Creating subfolder: 'Attendance'
-2026-03-23 19:01:43,161 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:43,606 - src.folder_logic - INFO - 📂 Reading contents of folder: 1lLmBERkSjAcD7Z3sn0eTFNaVcNi0A32u
-2026-03-23 19:01:44,717 - src.folder_logic - INFO -    📝 Copying file: 4 next event_Attendance_Sheet_Event_Name.xlsx
-2026-03-23 19:01:45,123 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:46,909 - src.folder_logic - INFO - 🎉 Successfully created event infrastructure for '4 next event'
-2026-03-23 19:01:47,312 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/editMessageText "HTTP/1.1 200 OK"
-2026-03-23 19:01:49,190 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:01:59,384 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:02:09,577 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:02:19,848 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:02:30,043 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:02:40,238 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:02:50,433 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:03:00,624 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:03:10,816 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:03:21,018 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:03:31,223 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:03:41,472 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:03:51,667 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:04:01,868 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:04:12,058 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:04:22,248 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:04:32,441 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:04:42,634 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:04:52,828 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:05:03,036 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:05:13,230 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:05:23,421 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:05:33,613 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:05:43,805 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:05:54,075 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:06:04,271 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:06:14,461 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:06:24,713 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:06:34,938 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:06:45,188 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:06:55,389 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:07:05,617 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:07:15,848 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:07:26,047 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:07:36,300 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:07:46,515 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-2026-03-23 19:07:56,711 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8456479896:AAH2Lj3MEovgzW-PGig1kzuWIuub7oGQVHw/getUpdates "HTTP/1.1 200 OK"
-ERROR: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})
-2026-03-31 18:52:18 - WEB_STATUS - INFO - Initializing creation...
-2026-03-31 18:52:19 - WEB_STATUS - INFO - Creating root folder...
-2026-03-31 18:52:21 - WEB_STATUS - INFO - Cloning template contents...
-2026-03-31 18:52:22 - WEB_STATUS - INFO - Creating folder: RSMS Notice
-2026-03-31 18:52:24 - WEB_STATUS - INFO - Creating folder: Registration
-2026-03-31 18:52:25 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Event_Name_Registration_Form
-2026-03-31 18:52:31 - WEB_STATUS - INFO - Creating folder: Poster
-2026-03-31 18:52:33 - WEB_STATUS - INFO - Copying: sample.jpeg
-2026-03-31 18:52:35 - WEB_STATUS - INFO - Creating folder: Report
-2026-03-31 18:52:37 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit___Event_Number____Event_Name___Report_IEDC.docx
-2026-03-31 18:52:39 - WEB_STATUS - INFO - Creating folder: Organizing Committee
-2026-03-31 18:52:42 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Event Name__Organizing Commitee List.docx
-2026-03-31 18:52:44 - WEB_STATUS - INFO - Creating folder: Media
-2026-03-31 18:52:46 - WEB_STATUS - INFO - Creating folder: Stage
-2026-03-31 18:52:48 - WEB_STATUS - INFO - Creating folder: Group Photo
-2026-03-31 18:52:50 - WEB_STATUS - INFO - Creating folder: Audience
-2026-03-31 18:52:52 - WEB_STATUS - INFO - Creating folder: Geotagged
-2026-03-31 18:52:55 - WEB_STATUS - INFO - Creating folder: Permission Letter
-2026-03-31 18:52:57 - WEB_STATUS - INFO - Creating folder: Certificates
-2026-03-31 18:52:58 - WEB_STATUS - INFO - Creating folder: Feedback
-2026-03-31 18:53:00 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Event_Name_Feedback Form
-2026-03-31 18:53:05 - WEB_STATUS - INFO - Creating folder: Budget Sheet
-2026-03-31 18:53:07 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Budget_Sheet__Event_Name__.xlsx
-2026-03-31 18:53:09 - WEB_STATUS - INFO - Creating folder: Attendance
-2026-03-31 18:53:11 - WEB_STATUS - INFO - Copying: 22_IEDC_Summit_Attendance_Sheet_Event_Name.xlsx
-2026-03-31 18:53:13 - WEB_STATUS - INFO - DEPLOYMENT_COMPLETE: 1BL22IHWBC88mE4YSM6_v4ky7t0Etuv3M
+2026-04-01 11:45:01 - WEB_STATUS - INFO - Initializing '01_Template'...
+2026-04-01 11:45:01 - WEB_STATUS - INFO - Initializing creation...
+2026-04-01 11:45:02 - WEB_STATUS - INFO - Creating root folder...
+2026-04-01 11:45:04 - WEB_STATUS - INFO - Cloning template contents...
+2026-04-01 11:45:05 - WEB_STATUS - INFO - Creating folder: RSMS Notice
+2026-04-01 11:45:08 - WEB_STATUS - INFO - Creating folder: Resource persons
+2026-04-01 11:45:10 - WEB_STATUS - INFO - Copying: 01_Template_Event Name__Resource Persons Details .docx
+2026-04-01 11:45:13 - WEB_STATUS - INFO - Creating folder: Certificates
+2026-04-01 11:45:14 - WEB_STATUS - INFO - Creating folder: Organizing Committee
+2026-04-01 11:45:16 - WEB_STATUS - INFO - Copying: 01_Template_Event Name__Organizing Commitee List.docx
+2026-04-01 11:45:19 - WEB_STATUS - INFO - Creating folder: Attendance
+2026-04-01 11:45:20 - WEB_STATUS - INFO - Copying: 01_Template_Attendance_Sheet_Event_Name.xlsx
+2026-04-01 11:45:23 - WEB_STATUS - INFO - Creating folder: Registration
+2026-04-01 11:45:24 - WEB_STATUS - INFO - Copying: 01_Template_Registration_Form_Event_Name
+2026-04-01 11:45:29 - WEB_STATUS - INFO - Creating folder: Media
+2026-04-01 11:45:31 - WEB_STATUS - INFO - Creating folder: Stage
+2026-04-01 11:45:32 - WEB_STATUS - INFO - Creating folder: Group Photo
+2026-04-01 11:45:34 - WEB_STATUS - INFO - Creating folder: Geotagged
+2026-04-01 11:45:36 - WEB_STATUS - INFO - Creating folder: Audience
+2026-04-01 11:45:38 - WEB_STATUS - INFO - Creating folder: Poster
+2026-04-01 11:45:39 - WEB_STATUS - INFO - Copying: 01_Template_WhatsApp Image 2023-11-07 at 23.21.40.jpeg
+2026-04-01 11:45:42 - WEB_STATUS - INFO - Creating folder: Permission Letter
+2026-04-01 11:45:44 - WEB_STATUS - INFO - Creating folder: Budget Sheet
+2026-04-01 11:45:45 - WEB_STATUS - INFO - Copying: 01_Template_Budget_Sheet__Event_Name__.xlsx
+2026-04-01 11:45:48 - WEB_STATUS - INFO - Creating folder: Feedback
+2026-04-01 11:45:50 - WEB_STATUS - INFO - Copying: 01_Template_Feedback_Form_Event_Name_
+2026-04-01 11:45:54 - WEB_STATUS - INFO - Creating folder: Report
+2026-04-01 11:45:56 - WEB_STATUS - INFO - Copying: 01_Template___Event_Number____Event_Name___Report_IEDC.docx
+2026-04-01 11:45:58 - WEB_STATUS - INFO - DEPLOYMENT_COMPLETE: 150t40W8jX8TxLZwM5sirKrTZIC3E7TuH
