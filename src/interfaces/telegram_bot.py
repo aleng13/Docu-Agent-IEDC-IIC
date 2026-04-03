@@ -1,4 +1,4 @@
-﻿"""
+"""
 Telegram Bot Interface
 ----------------------
 Handles the /create command to trigger Google Drive folder logic asynchronously.
@@ -22,9 +22,10 @@ from telegram.ext import (
     ContextTypes,
 )
 
-from src.drive_auth import get_drive_service
-from src.folder_logic import create_event_folder
-from src.keep_alive import keep_alive
+from src.core.drive_auth import get_drive_service
+from src.core.config import get_project_root
+from src.tools.folder_logic import create_event_folder
+from src.interfaces.keep_alive import keep_alive
 
 log = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ def get_config_ids() -> Dict[str, Optional[str]]:
     Returns:
         Dict[str, Optional[str]]: Parent and template folder IDs.
     """
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    project_root = get_project_root()
     config_path = os.path.join(project_root, "config.json")
 
     parent_id = os.getenv("PARENT_FOLDER_ID")
@@ -85,7 +86,7 @@ async def _create_event_task(chat_id: int, event_name: str, app: Application, pr
             )
             return
 
-        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        project_root = get_project_root()
         loop = asyncio.get_event_loop()
         last_update_time = [0.0]  # Mutable timestamp holder for throttling.
 

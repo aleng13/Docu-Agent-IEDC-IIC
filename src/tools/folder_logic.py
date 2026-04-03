@@ -10,7 +10,7 @@ import time
 from typing import Optional, Callable
 from googleapiclient.discovery import Resource
 
-from .drive_client import (
+from src.core.drive_client import (
     find_folder_id, 
     create_folder, 
     update_folder_color,

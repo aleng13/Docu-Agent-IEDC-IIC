@@ -86,11 +86,17 @@ Best for quick, local tests without starting the Telegram bot.
 python main.py "My Event Name"
 ```
 
+### Method A2: CLI Summary Mode (Write to Sheet)
+Runs summary extraction and writes results to the Activity Sheet by default.
+```bash
+python main.py summary "My Event Name"
+```
+
 ### Method B: Telegram Bot Mode (Polling)
 Best for continuous operation where users can trigger folder creation via Telegram.
 ```bash
 # Run as a module from the root directory
-python -m src.telegram_bot
+python -m src.interfaces.telegram_bot
 ```
 
 #### Bot Commands:
@@ -100,7 +106,7 @@ python -m src.telegram_bot
 ### Method C: Web Dashboard Mode (Standalone)
 If you want to run only the web-based status dashboard without the Telegram bot:
 ```bash
-python -m src.keep_alive
+python -m src.interfaces.keep_alive
 ```
 The dashboard will be available at `http://localhost:8080` (unless a different `PORT` is set in `.env`).
 
@@ -108,7 +114,7 @@ The dashboard will be available at `http://localhost:8080` (unless a different `
 
 ## 6. Troubleshooting
 
-- **`ModuleNotFoundError: No module named 'src'`**: Ensure you are running the bot using the `-m` flag from the root directory: `python -m src.telegram_bot`.
+- **`ModuleNotFoundError: No module named 'src'`**: Ensure you are running the bot using the `-m` flag from the root directory: `python -m src.interfaces.telegram_bot`.
 - **`HttpError 403: Rate Limit Exceeded`**: The bot has built-in delays, but if this happens, restart the process.
 - **Credential Errors**: Delete `token.json` and run the program again to re-authenticate.
 - **Markdown Errors**: The bot uses `ParseMode.MARKDOWN` (v1). Ensure `*` is used for bold instead of `**`.

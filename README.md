@@ -28,12 +28,18 @@ Docu-Agent-Clean is an automated Google Drive infrastructure bot that flawlessly
 python main.py "My Cool Event 2026"
 ```
 
+### CLI Summary Mode (Write to Sheet)
+```bash
+python main.py summary "My Cool Event 2026"
+```
+This writes the extracted summary directly to the Activity Sheet and prints a short preview.
+
 ### Telegram Bot Mode (Polling)
 ```bash
-python -m src.telegram_bot
+python -m src.interfaces.telegram_bot
 ```
 
 ### Web Dashboard Mode (Standalone)
 ```bash
-python -m src.keep_alive
+python -m src.interfaces.keep_alive
 ```

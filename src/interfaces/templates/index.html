@@ -93,14 +93,6 @@
                     <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">terminal</span>
                     <span class="font-headline text-lg font-medium text-on-surface group-hover:text-primary transition-colors">Command Center</span>
                 </a>
-                <a class="group flex items-center gap-4 py-2 transition-all" href="#">
-                    <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:scale-110 transition-transform">inventory_2</span>
-                    <span class="font-headline text-lg font-medium text-on-surface-variant group-hover:text-primary transition-colors">Archive</span>
-                </a>
-                <a class="group flex items-center gap-4 py-2 transition-all" href="#">
-                    <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:scale-110 transition-transform">settings</span>
-                    <span class="font-headline text-lg font-medium text-on-surface-variant group-hover:text-primary transition-colors">Settings</span>
-                </a>
             </nav>
             <div class="pt-8 border-t border-outline-variant/20">
                 <p class="text-[10px] text-on-surface-variant opacity-40 uppercase tracking-widest mb-4">Account</p>
@@ -109,7 +101,7 @@
                         <span class="material-symbols-outlined text-primary">account_circle</span>
                     </div>
                     <div>
-                        <p class="text-sm font-bold text-on-surface">Agent Alpha</p>
+                        <p class="text-sm font-bold text-on-surface">RSET IEDC & IIC</p>
                         <p class="text-[10px] text-on-surface-variant">Administrator</p>
                     </div>
                 </div>
@@ -164,24 +156,17 @@
                                     <span class="material-symbols-outlined">arrow_forward</span>
                                 </div>
                             </button>
-                            <!-- Disabled Card 1 -->
-                            <div class="bg-surface-container-low/40 p-8 rounded-lg relative opacity-50 border border-outline-variant/5">
-                                <div class="absolute top-4 right-4 px-2 py-0.5 bg-surface-container-highest rounded text-[9px] font-bold tracking-widest text-primary uppercase">Locked</div>
-                                <div class="mb-6 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-4xl">folder_managed</span>
+                            <!-- Active Card -->
+                            <button class="group text-left bg-surface-container-low p-8 rounded-lg border border-outline-variant/10 relative overflow-hidden transition-all duration-300 hover:bg-surface-container-highest hover:border-primary/40 hover:shadow-[0_10px_40px_-15px_rgba(242,202,80,0.15)]" id="btnSummaryEvent">
+                                <div class="mb-6 text-on-surface-variant group-hover:text-primary group-hover:scale-110 transition-all duration-300">
+                                    <span class="material-symbols-outlined text-5xl">summarize</span>
                                 </div>
-                                <h4 class="font-headline text-xl font-bold mb-2">Folder Status</h4>
-                                <p class="text-on-surface-variant text-sm leading-relaxed italic">Validation of archive structures.</p>
-                            </div>
-                            <!-- Disabled Card 2 -->
-                            <div class="bg-surface-container-low/40 p-8 rounded-lg relative opacity-50 border border-outline-variant/5">
-                                <div class="absolute top-4 right-4 px-2 py-0.5 bg-surface-container-highest rounded text-[9px] font-bold tracking-widest text-primary uppercase">Locked</div>
-                                <div class="mb-6 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-4xl">edit_document</span>
+                                <h4 class="font-headline text-xl font-bold mb-3">Run Summary Extractor</h4>
+                                <p class="text-on-surface-variant text-sm leading-relaxed opacity-80">Read event files, extract summary data, and write the final values into the Activity Sheet.</p>
+                                <div class="absolute top-6 right-6 text-primary opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0">
+                                    <span class="material-symbols-outlined">arrow_forward</span>
                                 </div>
-                                <h4 class="font-headline text-xl font-bold mb-2">Index Sync</h4>
-                                <p class="text-on-surface-variant text-sm leading-relaxed italic">Metadata synchronization.</p>
-                            </div>
+                            </button>
                         </div>
                     </section>
                     
@@ -191,8 +176,12 @@
                             <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
                             <div class="space-y-8">
                                 <div>
-                                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Archive Initialization</h3>
-                                    <p class="text-on-surface-variant text-sm opacity-70">Enter the unique identifier for the new secure container.</p>
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-primary/10 text-primary" id="workflowBadge">Create</span>
+                                        <span class="text-on-surface-variant text-xs uppercase tracking-[0.2em]">Dashboard Action</span>
+                                    </div>
+                                    <h3 class="font-headline text-2xl font-bold text-on-surface mb-2" id="workflowTitle">Archive Initialization</h3>
+                                    <p class="text-on-surface-variant text-sm opacity-70" id="workflowDescription">Enter the unique identifier for the new secure container.</p>
                                 </div>
                                 <div class="flex flex-col md:flex-row gap-6 items-end">
                                     <div class="flex-1 space-y-2 w-full">
@@ -209,6 +198,7 @@
                                         </span>
                                     </button>
                                 </div>
+                                <p class="text-xs text-on-surface-variant/70">The selected action will run locally through the dashboard and update Google Drive or the Activity Sheet as needed.</p>
                             </div>
                         </div>
                     </section>
@@ -253,18 +243,30 @@
                                     <span class="material-symbols-outlined material-symbols-filled text-6xl">verified</span>
                                 </div>
                                 <div class="space-y-2">
-                                    <h3 class="font-headline text-4xl font-bold text-primary">Provisioning Complete</h3>
-                                    <p class="text-on-surface-variant text-lg">The secure event archive is now live and synchronized.</p>
+                                    <h3 class="font-headline text-4xl font-bold text-primary" id="successTitle">Provisioning Complete</h3>
+                                    <p class="text-on-surface-variant text-lg" id="successDescription">The secure event archive is now live and synchronized.</p>
                                 </div>
                                 <div class="flex flex-wrap gap-4 justify-center w-full max-w-2xl">
-                                    <a class="flex-1 min-w-[200px] flex items-center justify-center gap-3 px-8 py-4 bg-primary text-on-primary font-bold rounded hover:bg-primary-fixed transition-all" href="https://drive.google.com" target="_blank" rel="noopener noreferrer">
+                                    <a class="flex-1 min-w-[200px] flex items-center justify-center gap-3 px-8 py-4 bg-primary text-on-primary font-bold rounded hover:bg-primary-fixed transition-all" href="https://drive.google.com" target="_blank" rel="noopener noreferrer" id="successLink">
                                         <span class="material-symbols-outlined">cloud_circle</span>
                                         Open Drive Folder
                                     </a>
-                                    <button class="flex-1 min-w-[200px] flex items-center justify-center gap-3 px-8 py-4 bg-surface-container-highest text-on-surface font-bold rounded hover:bg-surface-bright transition-all border border-outline-variant/30" onclick="copyToClipboard(event)">
+                                    <button class="flex-1 min-w-[200px] flex items-center justify-center gap-3 px-8 py-4 bg-surface-container-highest text-on-surface font-bold rounded hover:bg-surface-bright transition-all border border-outline-variant/30" id="btnCopyLink" onclick="copyToClipboard(event)">
                                         <span class="material-symbols-outlined">content_copy</span>
                                         Copy Secure Link
                                     </button>
+                                </div>
+                                <div class="w-full max-w-4xl hidden" id="summaryResultArea">
+                                    <div class="text-left border border-outline-variant/15 rounded-lg bg-surface-container-highest/40 p-6">
+                                        <div class="flex items-center justify-between gap-4 mb-4">
+                                            <div>
+                                                <p class="text-[10px] font-bold tracking-[0.2em] uppercase text-primary">Summary Output</p>
+                                                <h4 class="font-headline text-xl font-bold text-on-surface">Extracted fields synced to the Activity Sheet</h4>
+                                            </div>
+                                            <span class="text-xs font-mono text-on-surface-variant" id="summaryRowLabel"></span>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="summaryResultGrid"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

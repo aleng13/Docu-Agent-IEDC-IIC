@@ -1,36 +1,48 @@
 """
 Authentication Module
 ---------------------
-Handles Google OAuth 2.0 flow and token management for Google Drive.
+Handles Google OAuth 2.0 flow and token management for Google Drive and Google Sheets.
+Unified from the previous GoogleAuth and DriveAuth split.
 """
 
 import os
 import pickle
 import logging
-from typing import Any
+from typing import Any, Optional
+
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import Resource, build
+from src.core.config import get_project_root
 
 log = logging.getLogger(__name__)
 
-SCOPES = ["https://www.googleapis.com/auth/drive"]
+SCOPES = [
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/spreadsheets",
+]
 
-def get_credentials(project_root: str) -> Any:
+TOKEN_FILE = "token.json"
+CREDENTIALS_FILE = "credentials.json"
+
+def get_credentials(project_root: Optional[str] = None) -> Any:
     """
     Loads Google API credentials from token.json or initiates an OAuth flow.
 
     Args:
-        project_root (str): The absolute path to the project root directory containing credentials.json.
+        project_root: Optional absolute path to project root. Defaults to config auto-resolution.
 
     Returns:
         Any: An authenticated Google credentials object.
         
     Raises:
-        FileNotFoundError: If credentials.json is missing when a new login is required.
+        FileNotFoundError: If credentials.json is missing.
     """
-    token_path = os.path.join(project_root, "token.json")
-    creds_path = os.path.join(project_root, "credentials.json")
+    if not project_root:
+        project_root = get_project_root()
+        
+    token_path = os.path.join(project_root, TOKEN_FILE)
+    creds_path = os.path.join(project_root, CREDENTIALS_FILE)
 
     creds = None
 
@@ -59,17 +71,26 @@ def get_credentials(project_root: str) -> Any:
 
     return creds
 
-def get_drive_service(project_root: str) -> Resource:
+def get_drive_service(project_root: Optional[str] = None) -> Resource:
     """
     Returns an authenticated Google Drive service object.
-
+    
     Args:
-        project_root (str): The absolute path to the project root directory.
-
-    Returns:
-        Resource: A Google Drive API service resource object ready to make requests.
+        project_root: Optional absolute path to project root.
     """
     creds = get_credentials(project_root)
     service = build("drive", "v3", credentials=creds)
     log.info("✅ Drive service initialized successfully.")
+    return service
+
+def get_sheets_service(project_root: Optional[str] = None) -> Resource:
+    """
+    Returns an authenticated Google Sheets service object.
+    
+    Args:
+        project_root: Optional absolute path to project root.
+    """
+    creds = get_credentials(project_root)
+    service = build("sheets", "v4", credentials=creds)
+    log.info("✅ Sheets service initialized successfully.")
     return service

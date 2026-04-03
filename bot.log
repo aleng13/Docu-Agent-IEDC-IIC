@@ -1,29 +1,5 @@
-2026-04-01 11:45:01 - WEB_STATUS - INFO - Initializing '01_Template'...
-2026-04-01 11:45:01 - WEB_STATUS - INFO - Initializing creation...
-2026-04-01 11:45:02 - WEB_STATUS - INFO - Creating root folder...
-2026-04-01 11:45:04 - WEB_STATUS - INFO - Cloning template contents...
-2026-04-01 11:45:05 - WEB_STATUS - INFO - Creating folder: RSMS Notice
-2026-04-01 11:45:08 - WEB_STATUS - INFO - Creating folder: Resource persons
-2026-04-01 11:45:10 - WEB_STATUS - INFO - Copying: 01_Template_Event Name__Resource Persons Details .docx
-2026-04-01 11:45:13 - WEB_STATUS - INFO - Creating folder: Certificates
-2026-04-01 11:45:14 - WEB_STATUS - INFO - Creating folder: Organizing Committee
-2026-04-01 11:45:16 - WEB_STATUS - INFO - Copying: 01_Template_Event Name__Organizing Commitee List.docx
-2026-04-01 11:45:19 - WEB_STATUS - INFO - Creating folder: Attendance
-2026-04-01 11:45:20 - WEB_STATUS - INFO - Copying: 01_Template_Attendance_Sheet_Event_Name.xlsx
-2026-04-01 11:45:23 - WEB_STATUS - INFO - Creating folder: Registration
-2026-04-01 11:45:24 - WEB_STATUS - INFO - Copying: 01_Template_Registration_Form_Event_Name
-2026-04-01 11:45:29 - WEB_STATUS - INFO - Creating folder: Media
-2026-04-01 11:45:31 - WEB_STATUS - INFO - Creating folder: Stage
-2026-04-01 11:45:32 - WEB_STATUS - INFO - Creating folder: Group Photo
-2026-04-01 11:45:34 - WEB_STATUS - INFO - Creating folder: Geotagged
-2026-04-01 11:45:36 - WEB_STATUS - INFO - Creating folder: Audience
-2026-04-01 11:45:38 - WEB_STATUS - INFO - Creating folder: Poster
-2026-04-01 11:45:39 - WEB_STATUS - INFO - Copying: 01_Template_WhatsApp Image 2023-11-07 at 23.21.40.jpeg
-2026-04-01 11:45:42 - WEB_STATUS - INFO - Creating folder: Permission Letter
-2026-04-01 11:45:44 - WEB_STATUS - INFO - Creating folder: Budget Sheet
-2026-04-01 11:45:45 - WEB_STATUS - INFO - Copying: 01_Template_Budget_Sheet__Event_Name__.xlsx
-2026-04-01 11:45:48 - WEB_STATUS - INFO - Creating folder: Feedback
-2026-04-01 11:45:50 - WEB_STATUS - INFO - Copying: 01_Template_Feedback_Form_Event_Name_
-2026-04-01 11:45:54 - WEB_STATUS - INFO - Creating folder: Report
-2026-04-01 11:45:56 - WEB_STATUS - INFO - Copying: 01_Template___Event_Number____Event_Name___Report_IEDC.docx
-2026-04-01 11:45:58 - WEB_STATUS - INFO - DEPLOYMENT_COMPLETE: 150t40W8jX8TxLZwM5sirKrTZIC3E7TuH
+2026-04-03 18:46:33 - WEB_STATUS - INFO - Initializing summary extraction for '01_IGO_IGO'...
+2026-04-03 18:46:37 - WEB_STATUS - INFO - Found event folder: 1-an1-DjG4dehMb7MZP2779D6o5gEVaII
+2026-04-03 18:46:37 - WEB_STATUS - INFO - Reading report, committee, registration, and feedback data...
+2026-04-03 18:47:04 - WEB_STATUS - INFO - SUMMARY_COMPLETE
+2026-04-03 18:47:04 - WEB_STATUS - INFO - SUMMARY_PREVIEW: {"Event Name": "01_IGO_IGO", "Event Date": "14th July 2025", "No. of Participants": "27", "Percentage Participation": "100%", "Coordinators": "Mr.Nitheesh Kurian(Nodal Officer RSET IEDC), Ms.Anu Maria Joykutty (Asst Nodal Officer RSET IEDC)"}
