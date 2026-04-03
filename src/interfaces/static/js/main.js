@@ -22,6 +22,12 @@ const summaryResultArea = document.getElementById('summaryResultArea');
 const summaryResultGrid = document.getElementById('summaryResultGrid');
 const summaryRowLabel = document.getElementById('summaryRowLabel');
 const btnCopyLink = document.getElementById('btnCopyLink');
+const btnOpenLogs = document.getElementById('btnOpenLogs');
+const btnCloseLogs = document.getElementById('btnCloseLogs');
+const logsPanel = document.getElementById('logsPanel');
+const globalLogsBody = document.getElementById('globalLogsBody');
+const btnClearGlobalLogs = document.getElementById('btnClearGlobalLogs');
+let globalLogPoll = null;
 
 const toggleMenu = (open) => {
     if (open) {
@@ -67,7 +73,7 @@ function setWorkflow(mode) {
     const createState = mode === 'create';
     const summaryState = mode === 'summary';
 
-    const activeCardClass = ['border-primary/50', 'shadow-[0_0_30px_rgba(242,202,80,0.12)]', 'bg-surface-container-highest'];
+    const activeCardClass = ['shadow-[0_0_30px_rgba(242,202,80,0.12)]', 'bg-surface-container-highest'];
     const inactiveCardClass = ['border-outline-variant/10'];
 
     [workflowCopy.create.card, workflowCopy.summary.card].forEach((card) => {
@@ -328,3 +334,52 @@ function copyToClipboard(e) {
         }
     });
 }
+
+const toggleLogsPanel = (open) => {
+    if (open) {
+        logsPanel.classList.remove('translate-x-full');
+        startGlobalLogPoll();
+    } else {
+        logsPanel.classList.add('translate-x-full');
+        stopGlobalLogPoll();
+    }
+};
+
+const startGlobalLogPoll = () => {
+    if (globalLogPoll) return;
+    
+    const fetchGlobalLogs = async () => {
+        try {
+            const res = await fetch('/api/logs');
+            const data = await res.json();
+            if (data.logs) {
+                const lines = data.logs.split('\n');
+                let html = '';
+                lines.forEach(line => {
+                    if (line.trim()) {
+                        html += `<p class="mb-1 border-l-2 border-primary/20 pl-3 py-0.5 hover:bg-white/5 transition-colors">${line}</p>`;
+                    }
+                });
+                globalLogsBody.innerHTML = html;
+                globalLogsBody.scrollTop = globalLogsBody.scrollHeight;
+            }
+        } catch (e) {
+            console.error("Global log poll error", e);
+        }
+    };
+
+    fetchGlobalLogs();
+    globalLogPoll = setInterval(fetchGlobalLogs, 2000);
+};
+
+const stopGlobalLogPoll = () => {
+    if (globalLogPoll) {
+        clearInterval(globalLogPoll);
+        globalLogPoll = null;
+    }
+};
+
+if (btnOpenLogs) btnOpenLogs.addEventListener('click', (e) => { e.preventDefault(); toggleLogsPanel(true); });
+if (btnCloseLogs) btnCloseLogs.addEventListener('click', () => toggleLogsPanel(false));
+if (btnClearGlobalLogs) btnClearGlobalLogs.addEventListener('click', () => { globalLogsBody.innerHTML = ''; });
+
