@@ -239,7 +239,7 @@ def extract_event_details(drive_service, sheets_service, folder_id: str, event_n
     log.info("Step 1: Finding all subfolders...")
     try:
         query = f"'{folder_id}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false"
-        drive_id = shared_drive_id or drive_api.get_shared_drive_id(drive_service, drive_api.SHARED_DRIVE_NAME)
+        drive_id = shared_drive_id
         
         list_kwargs = {
             "q": query,

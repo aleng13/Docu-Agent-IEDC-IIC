@@ -3,7 +3,6 @@ google-auth-httplib2
 google-auth-oauthlib
 google-auth
 python-dotenv
-python-telegram-bot>=20.0
 google-generativeai
 python-docx
 flask

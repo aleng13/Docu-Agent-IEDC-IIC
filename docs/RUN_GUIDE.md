@@ -51,26 +51,15 @@ The bot requires access to the Google Drive API to manage files.
 
 ---
 
-## 3. Telegram Bot Setup (Optional)
+## 3. Configuration Files
 
-If you wish to use the Telegram interface:
-
-1. Open Telegram and search for `@BotFather`.
-2. Send `/newbot` and follow the instructions to get your **API Token**.
-3. Save this token for the `.env` file setup below.
-
----
-
-## 4. Configuration Files
-
-### 4.1 `.env` File
+### 3.1 `.env` File
 Create a `.env` file in the root directory:
 ```env
-TELEGRAM_TOKEN=your_telegram_bot_token
 SHARED_DRIVE_ID=your_shared_drive_id (leave empty if not using a shared drive)
 ```
 
-### 4.2 `config.json`
+### 3.2 `config.json`
 Update the following fields in `config.json`:
 - `gemini_api_key`: Your Google AI Studio API key (for document validation).
 - `template_folder_id`: The ID of the folder containing your templates.
@@ -78,10 +67,10 @@ Update the following fields in `config.json`:
 
 ---
 
-## 5. Running the Program
+## 4. Running the Program
 
 ### Method A: CLI Mode (One-off Creation)
-Best for quick, local tests without starting the Telegram bot.
+Best for quick, local tests.
 ```bash
 python main.py "My Event Name"
 ```
@@ -92,19 +81,8 @@ Runs summary extraction and writes results to the Activity Sheet by default.
 python main.py summary "My Event Name"
 ```
 
-### Method B: Telegram Bot Mode (Polling)
-Best for continuous operation where users can trigger folder creation via Telegram.
-```bash
-# Run as a module from the root directory
-python -m src.interfaces.telegram_bot
-```
-
-#### Bot Commands:
-- `/start`: Check if the bot is alive.
-- `/create <EventName>`: Triggers the recursive folder creation process.
-
-### Method C: Web Dashboard Mode (Standalone)
-If you want to run only the web-based status dashboard without the Telegram bot:
+### Method B: Web Dashboard Mode (Standalone)
+If you want to run the web-based status dashboard:
 ```bash
 python -m src.interfaces.keep_alive
 ```
@@ -112,9 +90,8 @@ The dashboard will be available at `http://localhost:8080` (unless a different `
 
 ---
 
-## 6. Troubleshooting
+## 5. Troubleshooting
 
-- **`ModuleNotFoundError: No module named 'src'`**: Ensure you are running the bot using the `-m` flag from the root directory: `python -m src.interfaces.telegram_bot`.
+- **`ModuleNotFoundError: No module named 'src'`**: Ensure you are running commands from the project root.
 - **`HttpError 403: Rate Limit Exceeded`**: The bot has built-in delays, but if this happens, restart the process.
 - **Credential Errors**: Delete `token.json` and run the program again to re-authenticate.
-- **Markdown Errors**: The bot uses `ParseMode.MARKDOWN` (v1). Ensure `*` is used for bold instead of `**`.

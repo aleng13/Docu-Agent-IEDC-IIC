@@ -62,9 +62,6 @@ def find_folder_id(service: Resource, folder_name: str, parent_id: str, shared_d
         f"and trashed=false"
     )
     try:
-        if not shared_drive_id:
-            shared_drive_id = get_shared_drive_id(service, SHARED_DRIVE_NAME)
-            
         list_kwargs = _build_files_list_kwargs(query, "files(id, name)", shared_drive_id)
         results = service.files().list(**list_kwargs).execute()
         items = results.get('files', [])
@@ -108,11 +105,10 @@ def list_folder_contents(service: Resource, folder_id: str) -> list:
         f"and trashed=false"
     )
     try:
-        drive_id = get_shared_drive_id(service, SHARED_DRIVE_NAME)
         list_kwargs = _build_files_list_kwargs(
             query,
             "files(id, name, mimeType, modifiedTime)",
-            drive_id
+            None
         )
         results = service.files().list(**list_kwargs).execute()
         return results.get('files', [])

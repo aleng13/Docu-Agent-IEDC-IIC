@@ -1,12 +1,13 @@
 # Docu-Agent: Vibe Edition
 
-Docu-Agent-Clean is an automated Google Drive infrastructure bot that flawlessly clones, namespaces, and contextualizes template folders for operational events. Designed around strict idempotent API logic, it prevents manual data-entry errors through transactional Google Drive setups.
+Docu-Agent-Clean is an automated Google Drive infrastructure tool that clones, namespaces, and contextualizes template folders for operational events. Designed around strict idempotent API logic, it prevents manual data-entry errors through transactional Google Drive setups.
 
 ## Prerequisites
 
 - Python 3.11+
-- A Google Cloud Service Account `credentials.json` (OAuth2.0 enabled) stored in the root folder.
-- Google Account ready to authenticate the app locally at first run.
+- A Google OAuth Desktop App `credentials.json` stored in the project root.
+- A Google account with access to your target Drive folders and Activity Sheet.
+- A valid `config.json` with `template_folder_id`, `parent_folder_id`, and `activity_sheet` settings.
 
 ## Quick Start
 
@@ -17,13 +18,14 @@ Docu-Agent-Clean is an automated Google Drive infrastructure bot that flawlessly
    pip install -r requirements.txt
    ```
 
-2. **Configure GCP**: Drop your `credentials.json` into the root.
+2. **Configure OAuth**: Drop your `credentials.json` into the root.
+   On first run, a browser login opens and a `token.json` is generated automatically.
 
-3. **Detailed Documentation**: For a full, step-by-step setup (including Telegram and GEMINI setup), please see our **[Comprehensive Run Guide](docs/RUN_GUIDE.md)**.
+3. **Detailed Documentation**: For a full, step-by-step setup, please see our **[Comprehensive Run Guide](docs/RUN_GUIDE.md)**.
 
 ## Running the App
 
-### CLI Mode (One-off)
+### CLI Mode (Create Event Folder)
 ```bash
 python main.py "My Cool Event 2026"
 ```
@@ -34,12 +36,8 @@ python main.py summary "My Cool Event 2026"
 ```
 This writes the extracted summary directly to the Activity Sheet and prints a short preview.
 
-### Telegram Bot Mode (Polling)
-```bash
-python -m src.interfaces.telegram_bot
-```
-
 ### Web Dashboard Mode (Standalone)
 ```bash
 python -m src.interfaces.keep_alive
 ```
+Dashboard URL: `http://localhost:8080`
