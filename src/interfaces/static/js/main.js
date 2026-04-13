@@ -45,6 +45,7 @@ menuOverlay.addEventListener('click', function() { toggleMenu(false); });
 
 let selectedWorkflow = 'create';
 let activePoll = null;
+let successLinkUrl = null;
 
 const workflowCopy = {
     create: {
@@ -94,7 +95,7 @@ function setWorkflow(mode) {
     if (successTitle) successTitle.textContent = workflowCopy[mode].statusTitle;
     if (successDescription) successDescription.textContent = workflowCopy[mode].statusDescription;
     if (successLink) {
-        successLink.innerHTML = `<span class="material-symbols-outlined">cloud_circle</span>${createState ? ' Open Drive Folder' : ' Open Event Folder'}`;
+        successLink.innerHTML = `<span class="material-symbols-outlined">cloud_circle</span>${createState ? ' Open Drive Folder' : ' Open Activity Sheet'}`;
     }
     if (summaryResultArea) summaryResultArea.classList.toggle('hidden', !summaryState);
     if (summaryResultGrid && !summaryState) summaryResultGrid.innerHTML = '';
@@ -173,6 +174,7 @@ function resetWorkflowState() {
 async function startWorkflow(eventName, mode) {
     terminalBody.innerHTML = '';
     successArea.classList.add('hidden');
+    successLinkUrl = null;
     if (summaryResultArea) summaryResultArea.classList.add('hidden');
     const statusMessage = document.getElementById('statusMessage');
     const progressBar = document.getElementById('progressBar');
@@ -233,6 +235,7 @@ async function startWorkflow(eventName, mode) {
                     activePoll = null;
 
                     let folderId = null;
+                    let summarySheetUrl = null;
                     if (mode === 'create') {
                         const parts = logData.logs.split('DEPLOYMENT_COMPLETE: ');
                         folderId = parts[1] ? parts[1].split('\n')[0].trim() : null;
@@ -244,6 +247,7 @@ async function startWorkflow(eventName, mode) {
                             if (resultRes.ok) {
                                 const result = await resultRes.json();
                                 folderId = result.folder_id || null;
+                                summarySheetUrl = result.activity_sheet_url || null;
                                 renderSummaryResult(result);
                             }
                         } catch (e) {
@@ -256,7 +260,7 @@ async function startWorkflow(eventName, mode) {
                         progressBar.style.width = '100%';
                         pPercent.textContent = '100%';
                     }
-                    showSuccess(mode, folderId);
+                    showSuccess(mode, folderId, summarySheetUrl);
                 }
                 
                 if (logData.logs.indexOf('FAILED:') !== -1) {
@@ -276,7 +280,7 @@ async function startWorkflow(eventName, mode) {
     }
 }
 
-function showSuccess(mode, folderId) {
+function showSuccess(mode, folderId, summarySheetUrl) {
     successArea.classList.remove('hidden');
     successArea.scrollIntoView({ behavior: 'smooth' });
     
@@ -290,8 +294,12 @@ function showSuccess(mode, folderId) {
     }
     
     const driveLink = document.querySelector('#successArea a');
-    if (folderId && driveLink) {
-        driveLink.href = 'https://drive.google.com/drive/folders/' + folderId;
+    successLinkUrl = mode === 'summary'
+        ? (summarySheetUrl || 'https://docs.google.com/spreadsheets')
+        : (folderId ? ('https://drive.google.com/drive/folders/' + folderId) : 'https://drive.google.com');
+
+    if (driveLink) {
+        driveLink.href = successLinkUrl;
     }
 
     if (summaryResultArea) {
@@ -306,7 +314,7 @@ function copyToClipboard(e) {
     
     // Get the actual dynamic link created upon success
     const driveLinkAnchor = document.querySelector('#successArea a');
-    const actualLink = driveLinkAnchor ? driveLinkAnchor.href : "https://drive.google.com";
+    const actualLink = successLinkUrl || (driveLinkAnchor ? driveLinkAnchor.href : "https://drive.google.com");
 
     // Visual snap effect for the button click
     const btn = e ? e.currentTarget : document.querySelector('button[onclick^="copyToClipboard"]');
@@ -382,4 +390,3 @@ const stopGlobalLogPoll = () => {
 if (btnOpenLogs) btnOpenLogs.addEventListener('click', (e) => { e.preventDefault(); toggleLogsPanel(true); });
 if (btnCloseLogs) btnCloseLogs.addEventListener('click', () => toggleLogsPanel(false));
 if (btnClearGlobalLogs) btnClearGlobalLogs.addEventListener('click', () => { globalLogsBody.innerHTML = ''; });
-

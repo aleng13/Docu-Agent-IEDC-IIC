@@ -217,6 +217,7 @@ def api_run_summary():
                 "event_name": event_name,
                 "folder_id": folder_id,
                 "row": row,
+                "activity_sheet_url": f"https://docs.google.com/spreadsheets/d/{sheet_id}/edit",
                 "summary": extracted_data,
             }
 
